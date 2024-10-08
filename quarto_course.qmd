@@ -1,7 +1,7 @@
 ---
-title: "Introductory course to Quarto, DIME Theme and Beyond"
+title: "Example Interns 2024d"
 subtitle: "DIME Continuing Education"
-author: "Ruggero Doino (Research Analyst, DIME 3 - Public Finance)"
+author: "Interns"
 institute: Development Impact Department (DIME)
 date: today
 date-format: "dddd, [the] D[<sup style='font-size:65%;font-style:italic;'>th</sup>] [of] MMMM, YYYY"
@@ -12,7 +12,7 @@ knitr:
 format:
   dime-revealjs:
     # Output file
-    output-file: quarto_course.html
+    output-file: interns_2024.html
     # Table of Contents
     toc: true
     toc_float: true
@@ -51,9 +51,9 @@ source("_extensions/dime-worldbank/dime/setup_ggplot2_dime.R")
 
 # Introduction {background-color="#07202E"}
 
-------------------------------------------------------------------------
+---
 
-<h3>We assume</h3>
+## We assume
 
 `r fontawesome::fa("r-project")` You are familiar with [R](https://www.r-project.org/)
 

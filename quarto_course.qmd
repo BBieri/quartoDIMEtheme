@@ -1,0 +1,1152 @@
+---
+title: "Example Interns 2024d"
+subtitle: "DIME Continuing Education"
+author: "Interns"
+institute: Development Impact Department (DIME)
+date: today
+date-format: "dddd, [the] D[<sup style='font-size:65%;font-style:italic;'>th</sup>] [of] MMMM, YYYY"
+bibliography: bib/template.bib
+knitr:
+  opts_chunk: 
+    collapse: true
+format:
+  dime-revealjs:
+    # Output file
+    output-file: interns_2024.html
+    # Table of Contents
+    toc: true
+    toc_float: true
+    toc-depth: 1
+    toc-location: body
+    toc-title: "Outline"
+    # Generate a self contained file
+    self-contained: true
+    self-contained-math: true
+    # Turn preview links within the presentation off (all links open in a new tab)
+    preview-links: true
+    # Logo and footer options
+    logo: "logos/WB-WBG-horizontal-RGB.png"
+    header-logo: "logos/Dime-0_logo-bb-alt_RGB-Color.png"
+    footer: "[DIME](https://www.worldbank.org/dime) theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html). Code available on [GitHub](https://github.com/dime-worldbank/quarto-dime-theme)."
+filters:
+  - "_extensions/dime-worldbank/dime/reveal-header.lua"
+include-in-header:
+- text: |
+    <link rel = "shortcut icon" href = "_extensions/dime-worldbank/dime/logo.png" />
+---
+
+```{r Setup}
+#| include: false
+# Add default ggplot theme. This can be overridden by your own theme at
+# the end of the ggplot graph.
+library(DiagrammeR)
+
+# DIME:
+source("_extensions/dime-worldbank/dime/setup_dime_palettes.R")
+source("_extensions/dime-worldbank/dime/setup_ggplot2_dime.R")
+# Worldbank:
+# source("_extensions/dime/setup_dime_palettes.R")
+# source("_extensions/dime/setup_ggplot2_dime.R")
+```
+
+# Introduction {background-color="#07202E"}
+
+---
+
+## We assume
+
+`r fontawesome::fa("r-project")` You are familiar with [R](https://www.r-project.org/)
+
+`r fontawesome::fa("markdown")` You have some knowledge of [Markdown](https://www.markdownguide.org/getting-started/)
+
+<img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/favicon.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 35px;"/></img> You are interested in learning about [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html), the next-generation of RMarkdown
+
+. . .
+
+<h3>We'll teach you</h3>
+
+`r emo::ji("paint")` [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html) syntax and formats for creating dynamic presentations
+
+<img src="logos/DIME_COLOR.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 30px;"/></img> [DIME TEMPLATE](https://github.com/dime-worldbank/quarto-dime-theme)!
+
+. . .
+
+<h3>We won't teach you...</h3>
+
+`r fontawesome::fa("css3")` [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS) styling
+
+`r fontawesome::fa("code")` [HTML](https://developer.mozilla.org/en-US/docs/Learn/CSS) customization
+
+`r fontawesome::fa("space-awesome")` Lunar landing techniques
+
+------------------------------------------------------------------------
+
+<h3>We assume</h3>
+
+`r fontawesome::fa("r-project")` You are familiar with [R](https://www.r-project.org/)
+
+`r fontawesome::fa("markdown")` You have some knowledge of [Markdown](https://www.markdownguide.org/getting-started/)
+
+<img src="https://raw.githubusercontent.com/quarto-dev/quarto-web/main/favicon.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 35px;"/></img> You are interested in learning about [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html), the next-generation of RMarkdown
+
+<h3>We'll teach you</h3>
+
+`r emo::ji("paint")` [Quarto](https://quarto.org/docs/get-started/hello/rstudio.html) syntax and formats for creating dynamic presentations
+
+<img src="logos/DIME_COLOR.png" style="display: inline-block; margin: 0; margin-bottom: -2px; height: 30px;"/></img> [DIME TEMPLATE](https://github.com/dime-worldbank/quarto-dime-theme)!
+
+<h3>... we'll touchbase</h3>
+
+`r fontawesome::fa("css3")` [CSS](https://developer.mozilla.org/en-US/docs/Learn/CSS) styling
+
+`r fontawesome::fa("code")` [HTML](https://developer.mozilla.org/en-US/docs/Learn/CSS) customization
+
+`r fontawesome::fa("space-awesome")` ~~Lunar landing techniques~~
+
+. . .
+
+::: callout-note
+Note that the slides will be rich with helpful resources accessible through hyperlinks.
+:::
+
+------------------------------------------------------------------------
+
+<h1>Ease of Use VS Full Details</h1>
+
+A straight-forward task - pour the boxed milk into the glass.
+
+. . .
+
+::: columns
+::: {.column width="50%"}
+> Easy to use
+
+![](https://j.gifs.com/WPwJ1W.gif){width="750px"}
+:::
+
+::: {.column width="50%"}
+> Understanding the full details
+
+![](https://j.gifs.com/z6BO57.gif){width="750px"}
+:::
+:::
+
+------------------------------------------------------------------------
+
+<h1>Ease of Use VS Full Details</h1>
+
+A straight-forward task - pour the boxed milk into the glass.
+
+![](https://j.gifs.com/WPwJ1W.gif){fig-align="center" width="750px"}
+
+------------------------------------------------------------------------
+
+<h3>What is Quarto?</h3>
+
+> Quarto^®^ is an open-source scientific and technical publishing system built on [Pandoc](https://pandoc.org/)
+
+. . .
+
+<h3>Why Quarto[^1]</h3>
+
+[^1]: The earliest known European printed book is a Quarto, the Sibyllenbuch, believed to have been printed by Johannes Gutenberg in 1452--53.
+
+Shakespeare's [Hamlet as a "Quarto"](https://www.folger.edu/publishing-shakespeare/diy-quarto)
+
+::: columns
+::: {.column width="40%"}
+::: {style="display: flex; justify-content: center; align-items: center;"}
+![](images/quarto_1.jpeg){width="275px" height="300px"}
+:::
+:::
+
+::: {.column width="40%"}
+::: {style="display: flex; justify-content: center; align-items: center;"}
+![](images/quarto_2.jpeg){width="275px" height="300px"}
+:::
+:::
+:::
+
+------------------------------------------------------------------------
+
+<h3>How to Install Quarto</h3>
+
+::: incremental
+> Download it from [here](https://quarto.org/docs/get-started)
+
+or
+
+> Use the terminal (and [HomeBrew](https://brew.sh/)):
+:::
+
+. . .
+
+1.  Open your Terminal application to begin the installation process.
+
+. . .
+
+2.  If Homebrew is not already installed on your machine, you can install it by executing the following command in the Terminal:
+
+```{language, eval=FALSE, echo=TRUE}
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+. . .
+
+3.  Once you have Homebrew installed, you can install Quarto by running the following command:
+
+```{language, eval=FALSE, echo=TRUE}
+brew install quarto
+```
+
+------------------------------------------------------------------------
+
+## One install, "Batteries included"
+
+-   RMarkdown grew into a large ecosystem, with **varying syntax**.
+
+. . .
+
+-   Quarto comes **"batteries included"** straight out of the box
+
+    -   [HTML](https://quarto.org/docs/output-formats/html-basics.html) reports
+    -   [PDF reports](https://quarto.org/docs/output-formats/pdf-basics.html)
+    -   MS Office ([Word](https://quarto.org/docs/output-formats/ms-word.html), [Powerpoint](https://quarto.org/docs/presentations/powerpoint.html))
+    -   Presentations ([Powerpoint](https://quarto.org/docs/presentations/powerpoint.html), [Beamer](https://quarto.org/docs/presentations/beamer.html), [revealjs](https://quarto.org/docs/presentations/revealjs/))
+    -   And much more...
+
+. . .
+
+**Today we will focus on `revealjs`**
+
+. . .
+
+[With Quarto Coming, is R Markdown Going Away? No.](https://yihui.org/en/2022/04/quarto-r-markdown/)
+
+------------------------------------------------------------------------
+
+## Comfort of your own workspace
+
+::: r-stack
+![](https://quarto.org/docs/tools/images/rstudio-preview.png){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside RStudio"}
+
+![](https://quarto.org/docs/tools/images/jupyterlab-preview.png){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside JupyterLab"}
+
+![](https://quarto.org/docs/computations/images/python-vscode.png){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside VSCode"}
+:::
+
+------------------------------------------------------------------------
+
+## Change your mental model
+
+::: columns
+::: {.column width="50%"}
+Source
+
+![](images/word.png){width="100%" height="100%"}
+:::
+
+::: {.column width="50%"}
+Output
+
+![](images/word.png){width="100%" height="100%"}
+:::
+:::
+
+## Change your mental model
+
+::: columns
+::: {.column width="50%"}
+Source
+
+::: {style="display: flex; justify-content: center; align-items: center;"}
+`r fontawesome::fa("file-code", height = "400px", fill = "#07202E")`
+:::
+:::
+
+::: {.column width="50%"}
+Output
+
+::: {style="display: flex; justify-content: center; align-items: center;"}
+`r fontawesome::fa("file-image", height = "400px", fill = "#07202E")`
+:::
+:::
+:::
+
+# DIME Template (and beyond) {background-color="#07202E"}
+
+------------------------------------------------------------------------
+
+## Similarly to Markdown and Latex, open source themes make a great contribution:
+
+. . .
+
+![](images/example_gallery.png){width="675px" height="500" fig-align="center"}
+
+------------------------------------------------------------------------
+
+### `r emo::ji("rocket")` [DIME](https://github.com/dime-worldbank/quarto-dime-theme) is always on top of things!
+
+::: fragment
+![](images/example_template.png){width="100%" height="100%" fig-align="center"}
+:::
+
+::: fragment
+-   Major credits to whom did the actual job \@[Bernard Bieri](https://bernhardbieri.ch/) and \@[Marco Fayet](https://www.worldbank.org/en/about/people/m/marco-fayet) `r emo::ji("popper")`
+:::
+
+::: fragment
+-   I am just the middle man... `r emo::ji("sweat_smile")`
+:::
+
+------------------------------------------------------------------------
+
+<h2>Let's take a look at the folder</h2>
+
+. . .
+
+::: {style="text-align: center;"}
+```{mermaid}
+flowchart TD
+    A{Github Repository} -->|Install Quarto DIME Template| B(dime_template)
+    B --> C[_alt]
+    B --> D[_extensions]
+    B --> E[bib]
+    B --> F[data]
+    B --> G[images]
+    B --> H[logos]
+```
+:::
+
+. . .
+
+::: callout-tip
+How can you produce reproducible-friendly diagrams like this? Use [mermaid](https://mermaid.js.org/) or [Graphviz](https://graphviz.org/).
+:::
+
+------------------------------------------------------------------------
+
+<h2>Let's take a look at the folder</h2>
+
+![](images/folder.png){width="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `_alt`</h2>
+
+. . .
+
+Here, you'll find a general template
+
+![](images/_alt.png){width="100%" height="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `_extensions`</h2>
+
+. . .
+
+That's where the magic happens ...
+
+![](images/_extensions.png){width="100%" height="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `_extensions` `r emo::ji("paint")`</h2>
+
+![](images/scss.png){width="70%" height="65%" fig-align="center"}
+
+-   Take a look at the [short](https://quarto.org/docs/output-formats/html-themes.html#sass-variables) and [complete](https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss) list of commands you can use.
+
+-   You can add CSS rules from other [templates](https://bootswatch.com/) (also great [resource](https://github.com/mcanouil/awesome-quarto)!)
+
+-   Or make your own [rules](https://developer.mozilla.org/en-US/docs/Web/CSS)!
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `bib`</h2>
+
+. . .
+
+If you need a bibliography
+
+![](images/bib.png){width="100%" height="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `data`</h2>
+
+. . .
+
+If you need to store data
+
+![](images/data.png){width="100%" height="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `images`</h2>
+
+. . .
+
+If you need to store images
+
+![](images/images.png){width="100%" height="100%" fig-align="center"}
+
+------------------------------------------------------------------------
+
+<h2>`r emo::ji("directory")` `logos`</h2>
+
+. . .
+
+If you need to use one of the amazing new logos!
+
+![](images/logos.png){width="100%" height="100%" fig-align="center"}
+
+# Anatomy of a .qmd {background-color="#07202E"}
+
+------------------------------------------------------------------------
+
+The main source file is a `.qmd`, and using it is easier said than done.
+
+::: r-stack
+![](images/template_sample_1){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside RStudio"}
+
+![](images/template_sample_2){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside RStudio"}
+
+![](images/template_sample_3){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside RStudio"}
+
+![](images/template_sample_4){.fragment width="1500" fig-alt="A screenshot of a Quarto document rendered inside RStudio"}
+:::
+
+------------------------------------------------------------------------
+
+YAML is a metadata preamble where you can set up the general options for you final output.
+
+. . .
+
+Technically, you could also no use it at all
+
+::: columns
+::: {.column width="50%"}
+![](images/no_yaml_code.png){width="100%" height="450px"}
+:::
+
+::: {.column width="50%"}
+![](images/no_yaml_q.png){width="100%" height="450px"}
+:::
+:::
+
+## DIME TEMPLATE YAML
+
+```{r}
+#| echo: true
+#| eval: false
+
+---
+title: "Introductory course to Quarto, DIME Theme and Beyond"
+subtitle: "DIME Continuing Education"
+author: "Ruggero Doino (Research Analyst, DIME 3 - Public Finance)"
+institute: Development Impact Department (DIME)
+date: today
+date-format: "dddd, [the] D[<sup style='font-size:65%;font-style:italic;'>th</sup>] [of] MMMM, YYYY"
+bibliography: bib/template.bib
+knitr:
+  opts_chunk: 
+    collapse: true
+format:
+  dime-revealjs:
+    # Output file
+    output-file: quarto_course.html
+    # Table of Contents
+    toc: true
+    toc_float: true
+    toc-depth: 1
+    toc-location: body
+    toc-title: "Outline"
+    # Generate a self contained file
+    self-contained: true
+    self-contained-math: true
+    # Turn preview links within the presentation off (all links open in a new tab)
+    preview-links: true
+    # Logo and footer options
+    logo: "logos/WB-DEC-Impact-horizontal-RGB-high.png"
+    header-logo: "logos/DIME_COLOR.png"
+    footer: "[DIME](https://www.worldbank.org/dime) theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html). Code available on [GitHub](https://github.com/dime-worldbank/quarto-dime-theme)."
+filters:
+  - "_extensions/dime-worldbank/dime/reveal-header.lua"
+---
+
+```
+
+------------------------------------------------------------------------
+
+![](images/issue_yaml_zero.png){width="100%" height="100%"}
+
+. . .
+
+![](images/issue_yaml.png){width="100%" height="100%"}
+
+. . .
+
+If you want to explore all the options available, take a look at [here](https://quarto.org/docs/reference/formats/presentations/revealjs.html).
+
+# Commands {background-color="#07202E"}
+
+## Prerequisites: Markdown Basics (and HTML) {.smaller}
+
+::: columns
+::: {.column width="50%"}
+### Markdown
+
+::: {.fragment fragment-index="1"}
+```{r, eval = FALSE, echo = TRUE}
+*italics*, **bold**, ***bold italics***
+  
+```
+:::
+
+::: {.fragment fragment-index="2"}
+```{r, eval = FALSE, echo = TRUE}
+superscript^2^ / subscript~2~
+  
+```
+:::
+
+::: {.fragment fragment-index="3"}
+```{r, eval = FALSE, echo = TRUE}
+~~strikethrough~~
+  
+```
+:::
+
+::: {.fragment fragment-index="4"}
+```{r, eval = FALSE, echo = TRUE}
+`verbatim code`
+
+```
+:::
+:::
+
+::: {.column width="50%"}
+### Output
+
+::: {.fragment fragment-index="1"}
+*italics*, **bold**, ***bold italics***
+:::
+
+::: {.fragment fragment-index="2"}
+superscript^2^ / subscript~2~
+:::
+
+::: {.fragment fragment-index="3"}
+~~strikethrough~~
+:::
+
+::: {.fragment fragment-index="4"}
+`verbatim code`
+:::
+:::
+:::
+
+::: {.fragment fragment-index="6"}
+::: columns
+::: {.column width="50%"}
+```{r, eval = FALSE, echo = TRUE}
+> Quoting something
+```
+:::
+
+::: {.column width="50%"}
+> Quoting something
+:::
+:::
+:::
+
+::: {.fragment fragment-index="7"}
+::: columns
+::: {.column width="50%"}
+```{r, eval = FALSE, echo = TRUE}
+$$
+\begin{equation}
+e^{i\pi} + 1 = 0
+\end{equation}
+$$
+```
+:::
+
+::: {.column width="50%"}
+$$
+\begin{equation}
+e^{i\pi} + 1 = 0
+\end{equation}
+$$
+:::
+:::
+:::
+
+::: {.fragment fragment-index="8"}
+#### There's plenty more to explore, from concise [lists](https://quarto.org/docs/authoring/markdown-basics.html) to [longer ones](https://pandoc.org/MANUAL.html#pandocs-markdown).
+:::
+
+::: {.fragment fragment-index="9"}
+::: callout-warning
+You can also use `html syntax` (if you use an .html format output) and `Latex syntax` (if you use .pdf format outputs).
+:::
+:::
+
+## Sections (1)
+
+If you use `#` first Header then you will get a title slide
+
+![](images/header_1.png)
+
+## Sections (2)
+
+If you use `##` second Header then you will get a section slide
+
+![](images/header_2.png)
+
+## Sections (3)
+
+But you can also just use `---` to divide section without adding titles
+
+![](images/header_3.png)
+
+## Incremental Lists (1)
+
+::: panel-tabset
+### Output
+
+::: incremental
+-   object 1
+-   object 2
+-   object 3
+-   object 4
+:::
+
+### Syntax
+
+```{r, eval = FALSE, echo = TRUE}
+::: {.incremental}
+- object 1 
+- object 2
+- object 3
+- object 4 
+:::
+```
+:::
+
+## Incremental Lists (2)
+
+::: panel-tabset
+## Outputs
+
+::: {.fragment fragment-index="1"}
+object 1
+:::
+
+::: {.fragment fragment-index="2"}
+object 4
+:::
+
+::: {.fragment fragment-index="3"}
+object 3
+:::
+
+::: {.fragment fragment-index="4"}
+object 2
+:::
+
+## Syntax
+
+```{r, eval = FALSE, echo = TRUE}
+object 1 
+. . . 
+object 2
+. . . 
+object 3
+. . . 
+object 4 
+```
+:::
+
+## Incremental Lists (3)
+
+::: panel-tabset
+### Output
+
+::: {.fragment fragment-index="1"}
+object 1
+:::
+
+::: {.fragment fragment-index="4"}
+object 4
+:::
+
+::: {.fragment fragment-index="3"}
+object 3
+:::
+
+::: {.fragment fragment-index="2"}
+object 2
+:::
+
+### Syntax
+
+```{r, eval = FALSE, echo = TRUE}
+::: {.fragment fragment-index=1}
+object 1
+:::
+
+::: {.fragment fragment-index=4}
+object 4
+:::
+
+::: {.fragment fragment-index=3}
+object 3
+:::
+
+::: {.fragment fragment-index=2}
+object 2
+:::
+```
+:::
+
+## Multiple Columns
+
+::: panel-tabset
+### Output
+
+::: columns
+::: {.column width="40%"}
+![](images/image_part_001.jpg){height="500px" fig-align="right"}
+:::
+
+::: {.column width="20%"}
+![](images/image_part_002.jpg){height="500px" fig-align="center"}
+:::
+
+::: {.column width="40%"}
+![](images/image_part_003.jpg){height="500px" fig-align="left"}
+:::
+:::
+
+### Syntax
+
+```{r, echo = TRUE, eval = FALSE}
+#| code-line-numbers: "|1,2,4,6,8,10,12,13"
+::: {.columns}
+::: {.column width=40%}
+![](images/image_part_001.jpg){height=500px fig-align="right"}
+:::
+
+::: {.column width=20%}
+![](images/image_part_002.jpg){height=500px fig-align="center"}
+:::
+
+::: {.column width=40%}
+![](images/image_part_003.jpg){height=500px fig-align="left"}
+:::
+:::
+```
+:::
+
+## Figures
+
+::: panel-tabset
+### Output
+
+::: {layout-nrow="2"}
+![](images/figure_1.jpeg){height="200px" width="340px" fig-align="left"}
+
+![](images/figure_2.jpeg){width="55%" fig-align="right"}
+
+![](images/figure_3.jpeg){width="75%" fig-align="center"}
+:::
+
+### Syntax
+
+```{r, echo = TRUE, eval = FALSE}
+::: {layout-nrow=2}
+![](images/figure_1.jpeg){height=200px width=340px fig-align="left"}
+
+![](images/figure_2.jpeg){width=55% fig-align="right"}
+
+![](images/figure_3.jpeg){width=75% fig-align="center"}
+
+:::
+```
+
+. . .
+
+#### There are many other options and configurations you can use for adding figures, take a look at it [here](https://quarto.org/docs/authoring/figures.html).
+:::
+
+## Slide Background {background-image="images/figure_1.jpeg"}
+
+To make a "section" slide like this, use:
+
+```         
+## Title of slide {background-image="images/figure_1.jpeg"}
+```
+
+## Speaker Notes
+
+![](images/speaker_notes.png){height="30%" width="55%" fig-align="center"}
+
+. . .
+
+```         
+::: {.notes}
+Speaker notes go here.
+:::
+```
+
+::: notes
+Speaker notes go here.
+:::
+
+## Asides and Footnotes
+
+-   Green [^2]
+-   Brown
+-   Purple
+
+[^2]: A footnote
+
+. . .
+
+```{r, echo = TRUE, eval = FALSE}
+- Green ^[A footnote]
+- Brown
+- Purple
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+```
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
+
+## Code Blocks (1)
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|1|3|4,5"
+library(ggplot2)
+
+    ggplot(airquality, aes(Temp, Ozone)) + 
+      geom_point() + 
+      geom_smooth(method = "loess")
+```
+
+```         
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|1|3|4,5"
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+## Code Blocks (2)
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-fold: true
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+
+```
+
+```         
+#| echo: true
+#| eval: true
+#| code-fold: true
+
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+## Code Blocks (3) {auto-animate="true"}
+
+```{r, echo = TRUE, eval = FALSE}
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) 
+```
+
+## Code Blocks (3) {auto-animate="true"}
+
+```{r, echo = TRUE, eval = FALSE}
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+
+. . .
+
+````         
+## Code Blocks (2) {auto-animate="true"}
+
+```r
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) 
+```
+
+## Code Blocks (2) {auto-animate="true"}
+
+```r
+library(ggplot2)
+
+ggplot(airquality, aes(Temp, Ozone)) + 
+  geom_point() + 
+  geom_smooth(method = "loess")
+```
+````
+
+## Tabsets
+
+::: panel-tabset
+## R
+
+``` r
+fizz_buzz <- function(fbnums = 1:50) {
+  output <- dplyr::case_when(
+    fbnums %% 15 == 0 ~ "FizzBuzz",
+    fbnums %% 3 == 0 ~ "Fizz",
+    fbnums %% 5 == 0 ~ "Buzz",
+    TRUE ~ as.character(fbnums)
+  )
+  print(output)
+}
+```
+
+## Python
+
+``` python
+def fizz_buzz(num):
+  if num % 15 == 0:
+    print("FizzBuzz")
+  elif num % 5 == 0:
+    print("Buzz")
+  elif num % 3 == 0:
+    print("Fizz")
+  else:
+    print(num)
+```
+
+## Java
+
+``` java
+public class FizzBuzz
+{
+  public static void fizzBuzz(int num)
+  {
+    if (num % 15 == 0) {
+      System.out.println("FizzBuzz");
+    } else if (num % 5 == 0) {
+      System.out.println("Buzz");
+    } else if (num % 3 == 0) {
+      System.out.println("Fizz");
+    } else {
+      System.out.println(num);
+    }
+  }
+}
+```
+
+## Julia
+
+``` julia
+function FizzBuzz(num)
+  if num % 15 == 0
+    println("FizzBuzz")
+  elseif num % 5 == 0
+    println("Buzz")
+  elseif num % 3 == 0
+    println("Fizz")
+  else
+    println(num)
+  end
+end
+```
+
+## Syntax
+
+````         
+::: {.panel-tabset}
+## R
+  
+``` r
+fizz_buzz <- function(fbnums = 1:50) {
+  output <- dplyr::case_when(
+    fbnums %% 15 == 0 ~ "FizzBuzz",
+    fbnums %% 3 == 0 ~ "Fizz",
+    fbnums %% 5 == 0 ~ "Buzz",
+    TRUE ~ as.character(fbnums)
+  )
+  print(output)
+}
+```
+  
+## Python
+  
+``` python
+def fizz_buzz(num):
+  if num % 15 == 0:
+    print("FizzBuzz")
+  elif num % 5 == 0:
+    print("Buzz")
+  elif num % 3 == 0:
+    print("Fizz")
+  else:
+    print(num)
+```
+  
+## Java
+  
+``` java
+public class FizzBuzz
+{
+  public static void fizzBuzz(int num)
+  {
+    if (num % 15 == 0) {
+      System.out.println("FizzBuzz");
+    } else if (num % 5 == 0) {
+      System.out.println("Buzz");
+    } else if (num % 3 == 0) {
+      System.out.println("Fizz");
+    } else {
+      System.out.println(num);
+    }
+  }
+}
+```
+  
+## Julia
+  
+``` julia
+function FizzBuzz(num)
+  if num % 15 == 0
+    println("FizzBuzz")
+  elseif num % 5 == 0
+    println("Buzz")
+  elseif num % 3 == 0
+    println("Fizz")
+  else
+    println(num)
+  end
+end
+```
+:::
+````
+:::
+
+## Callout Blocks
+
+```         
+:::{.callout-note}
+Note that there are five types of callouts, including: 
+`note`, `tip`, `warning`, `caution`, and `important`.
+You can change their titles using `## text-you-want-to-use`
+:::
+```
+
+::: callout-note
+## Note
+
+Note that there are five types of callouts, including: `note`, `tip`, `warning`, `caution`, and `important`.
+:::
+
+::: callout-warning
+## Warning
+
+Callouts provide a simple way to attract attention, for example, to this warning.
+:::
+
+::: callout-important
+## This is important
+
+Danger, callouts will really improve your writing.
+:::
+
+::: callout-tip
+## Tip with caption
+:::
+
+::: callout-caution
+## Caution, under construction
+
+Here is something under construction
+:::
+
+## Creating an automatic bibliography:
+
+Research is almost always built upon existing knowledge. Acknowledging the latter is therefore key. Quarto allows this bz specifying `bibliography: bibfile.bib` in the YAML header.
+
+One can then add citations with the \@ key [@arrowReviewOrdinalistUtilitarianNotes1973]. To generate the bibliography simply insert a slide with:
+
+```         
+## References
+
+::: {#refs}
+:::
+```
+
+> See the [Quarto documentation entry on citations](https://quarto.org/docs/authoring/footnotes-and-citations.html#citations) for more details.
+
+## References
+
+::: {#refs}
+:::
+
+# How to share the output {background-color="#07202E"}
+
+## There are (at least) three ways you can share this output with someone:
+
+-   The .qmd generates a .html file that you can use locally or send it to someone (just make sure to add the yaml option `self-contained: true`)
+-   My suggestion is to use [Netlify](https://www.netlify.com/)
+
+. . .
+
+First, move to the right directory (you need to use your terminal)
+
+```{bash, eval = FALSE, echo = TRUE}
+cd /Users/ruggerodoino/Documents/GitHub/dime-template
+```
+
+. . .
+
+Then, just run this code
+
+```{bash, eval = FALSE, echo = TRUE}
+quarto publish netlify
+```
+
+. . .
+
+Finally, you will get a a url where your presentation will be located
+
+. . .
+
+::: callout-tip
+You could also use [GitHub Actions](https://github.com/features/actions) to [update](https://github.com/quarto-dev/quarto-actions/tree/main/publish) the url file every time you do a commit `r emo::ji("exploding head")`
+:::

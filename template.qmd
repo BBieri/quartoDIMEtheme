@@ -20,10 +20,17 @@ format:
     self-contained: true
     self-contained-math: true
     # Turn preview links within the presentation off (all links open in a new tab)
-    preview-links: false
-    # Logo and footer options
-    logo: "logos/DIME_COLOR.png"
+    preview-links: true
+    # You can change the header logo in the top-left here 
+    logo: "logos/WORLD_BANK/WB-DEC-Impact-horizontal-RGB-high.png"
+    # You can change the footer logo in the bottom-right here
+    header-logo: ""
     footer: "[DIME](https://www.worldbank.org/dime) theme for [Quarto Presentations](https://quarto.org/docs/presentations/revealjs/index.html). Code available on [GitHub](https://github.com/dime-worldbank/quarto-dime-theme)."
+filters:
+  - "_extensions/dime-worldbank/dime/reveal-header.lua"
+include-in-header:
+- text: |
+    <link rel = "shortcut icon" href = "logos/logo.png" />
 ---
 
 ```{r Setup}
